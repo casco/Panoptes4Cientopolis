@@ -1,15 +1,17 @@
-Panoptes in a nutshell (a vagrant one)
-#Levantar vagrant 
+Cientopolis' Panoptes in a Vagrant box
+======================================
 
-   vagrant up
+#Fire up vagrant
+
+>vagrant up
    
-Eso deja casi todo listo
+It should leave almost everything ready. It sets up an ubuntu 15.04 vm, with everything needed for Panoptes and Panoptes-Front-End. Network is bridged, with dhcp (so you'll have to figure out its IP later), and 2gb of RAM
 
-   crea una vm ubuntu 15.04, con red bridged y dhcp (y 2gb de memoria)
+#Fire up Panoptes (server)
 
-#Entrar con "vagrant ssh" dejar levantar panoptes con estos pasos: 
-
-docker-compose up
+ssh to your vm and start the server
+>vagrant ssh 
+>docker-compose up
 
 #Actualizar la bd (La primera vez que levanto panoptes)
 
