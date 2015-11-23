@@ -22,7 +22,7 @@ Once inside the virtual machine, run:
 
 >docker-compose up
 
-After a while it will start four [Docker](https://www.docker.com) VMs with the core services used by Panoptes. Pay atention to the line that tells you the server is running on http://0.0.0.0:3000/ . That means Panoptes is running.
+After a while it will start four [Docker](https://www.docker.com) VMs with the core services used by Panoptes. Pay atention to the line that tells you "Listening on tcp://0.0.0.0:3000" . That means Panoptes is running.
 
 # Setup Panoptes DB and admin user
 The first time you start Panoptes, you need to recreate its DB, generate a password for the admin user (zooniverse_admin), and get an API code. 
