@@ -1,44 +1,63 @@
 Cientopolis' Panoptes in a Vagrant box
 ======================================
-
+#Install Vagrant
+Get and install Vagrant and VirtualBox following the instructions [here](https://docs.vagrantup.com/v2/installation/index.html). 
 #Fire up vagrant
 
 >vagrant up
-   
-It should leave almost everything ready. It sets up an ubuntu 15.04 vm, with everything needed for Panoptes and Panoptes-Front-End. Network is bridged, with dhcp (so you'll have to figure out its IP later), and 2gb of RAM
+
+Sit back and relax. It will take about 10 minutes (a bit more if it needs to download everything). 
+It sets up an ubuntu 15.04 virtual machine, with 2GB of RAM and everything needed for Panoptes and Panoptes-Front-End. 
+Network is bridged, with DHCP (so you'll have to figure out its IP address later).
 
 #Fire up Panoptes (server)
+You need to ssh to your VM and start the server. To do that, CD the root folder of this project (where the Vagrantfile file is located) and run:
 
-ssh to your vm and start the server
 >vagrant ssh 
+
+Once inside the virtual machine, run: 
+
+>cd Panoptes
+
 >docker-compose up
 
-#Actualizar la bd (La primera vez que levanto panoptes)
+After a while it will start four [Docker](https://www.docker.com) VMs with the core services used by Panoptes. Pay atention to the line that tells you the server is running on http://0.0.0.0:3000/ . That means Panoptes is running.
 
-La primera vez (una vez que levanto panoptes) hay que inicializar la bd con estos dos pasos desde otra sesión de ssh
- 
-   frake db:create db:migrate
-   
-Creo un usuario admin y una api ID 
+# Setup Panoptes DB and admin user
+The first time you start Panoptes, you need to recreate its DB, generate a password for the admin user (zooniverse_admin), and get an API code. 
 
-   frails runner db/fig_dev_seed_data/fig_dev_seed_data.rb   
-   
-Eso va a generar un client ID para usar la api - tomar nota (y del usuario admin y del ).    
-   p.e.
-    admin: zooniverse_admin pass: la que indicaste
-	client_id: 5c23b6bffa9e6eee20f7cefae99c3a88bde762e88106956381cd9f268c59bec5
-   
-Ver el IP del server haciendo ifconfig desde una sesión ssh (tomar nota)
-Probar conectarse a http://ip-del-server:3000/
+In a new shell window (the other one you have is blocked with the server), ssh again to your VM. Once inside, run this command to prepare the DB:
 
-#actualizar archivos de configuración del Panoptes-Front_End para que apunte a nuestro server  
+>frake db:create db:migrate
    
-    el numero de ip del server en el archivo app/api/config.coffee (poner la que se obtuvo en el paso 2)
-	el API_APPLICATION_IDS con el client_id de arriba
+To setup a password for the admin user and get an API_APPLICATION_ID, run the following command. It will ask for an admin id. 
+
+>frails runner db/fig\_dev\_seed\_data/fig\_dev\_seed\_data.rb   
+   
+Write down your admin id and the client\_id (this is your API\_APPLICATION\_ID)
+
+>admin: zooniverse\_admin pass: the-one-you-entered
+
+>client\_id: 5c23b6bffa9e6eee20f7cefae99c3a88bde762e88106956381cd9f268c59bec5
+   
+#Confirm the server is working
+Find out, and write down the IP address of your server (for example, via ifconfig in your ssh session) 
+
+Open a browser and go to http://your-server-ip:3000/ . You get a login screen. Use the admin account (zooniverse\_admin) and the password you set. If you can login, it means it is working. There is not much to do there. 
+
+#Point the Panoptes-Front-End to your server
+Open the file Panoptes-Front-End/app/api/config.coffee in your favorite editor. 
+
+Replace the IP address inall three occurrences of "cientopolis: 'http://192.168.0.109:3000'" with the IP address of your Panoptes server
+
+Replace the API\_APPLICATION\_ID for cientopolis with the one you obtained when setting up the server.    
 	
-	
-#Arrancar el Front_Ent
+#Fire up the front end
+Run the following commands to start the front-end
 
-   npm start
-   
-   debería estar corriendo luego de armar todo.    	
+>cd ~/Panoptes-Front-End
+
+>npm start
+
+It will download all required components (it is a node.js application) and start. Once finished, your front-end will be running on http://your-server-ip:3735/
+
