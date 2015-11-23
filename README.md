@@ -49,7 +49,7 @@ Find out, and write down the IP address of your server (for example, via ifconfi
 Open a browser and go to http://your-server-ip:3000/ . You get a login screen. Use the admin account (zooniverse\_admin) and the password you set. If you can login, it means it is working. There is not much to do there. 
 
 #Point the Panoptes-Front-End to your server
-Open the file Panoptes-Front-End/app/api/config.coffee in your favorite editor. 
+ssh to your server and open the file Panoptes-Front-End/app/api/config.coffee in your favorite editor. 
 
 Replace the IP address inall three occurrences of "cientopolis: 'http://192.168.0.109:3000'" with the IP address of your Panoptes server
 
