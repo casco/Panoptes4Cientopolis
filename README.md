@@ -64,3 +64,7 @@ Run the following commands to start the front-end
 
 It will download all required components (it is a node.js application) and start. Once finished, your front-end will be running on http://your-server-ip:3735/
 
+(If you get "The program 'npm' is currently not installed. To run 'npm' please ask your administrator to install the package 'npm'"), just run the following command to reconfigure node.js
+
+>nvm use v5.1.0
+
