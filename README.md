@@ -3,6 +3,7 @@ Cientopolis' Panoptes in a Vagrant box
 #Install Vagrant
 Get and install Vagrant and VirtualBox following the instructions [here](https://docs.vagrantup.com/v2/installation/index.html). 
 #Fire up vagrant
+CD the root folder of this project (where the Vagrantfile file is located) and run:
 
 >vagrant up
 
@@ -30,15 +31,17 @@ In a new shell window (the other one you have is blocked with the server), ssh a
 
 >frake db:create db:migrate
    
-To setup a password for the admin user and get an API_APPLICATION_ID, run the following command. It will ask for an admin id. 
+To setup a password for the admin user and get an API_APPLICATION_ID, run the following command. 
 
 >frails runner db/fig\_dev\_seed\_data/fig\_dev\_seed\_data.rb   
    
-Write down your admin id and the client\_id (this is your API\_APPLICATION\_ID)
+Write down your admin password and the client\_id (we will later refer to this ID as the API\_APPLICATION\_ID)
 
->admin: zooniverse\_admin pass: the-one-you-entered
-
->client\_id: 5c23b6bffa9e6eee20f7cefae99c3a88bde762e88106956381cd9f268c59bec5
+<pre>
+You will get something like this:
+admin: zooniverse_admin pass: the-one-you-entered
+client_id: 5c23b6bffa9e6eee20f7cefae99c3a88bde762e88106956381cd9f268c59bec5
+</pre>   
    
 #Confirm the server is working
 Find out, and write down the IP address of your server (for example, via ifconfig in your ssh session) 
