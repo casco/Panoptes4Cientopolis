@@ -29,6 +29,8 @@ The first time you start Panoptes, you need to recreate its DB, generate a passw
 
 In a new shell window (the other one you have is blocked with the server), ssh again to your VM. Once inside, run this command to prepare the DB:
 
+>cd Panoptes
+
 >sudo frake db:create db:migrate
    
 To setup a password for the admin user and get an API_APPLICATION_ID, run the following command. 
