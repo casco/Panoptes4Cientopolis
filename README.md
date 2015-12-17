@@ -30,11 +30,11 @@ The first time you start Panoptes, you need to recreate its DB, generate a passw
 In a new shell window (the other one you have is blocked with the server), ssh again to your VM. Once inside, run this command to prepare the DB:
 
 (still inside the Panopted directory)
->sudo frake db:create db:migrate
+>frake db:create db:migrate
    
 To setup a password for the admin user and get an API_APPLICATION_ID, run the following command. 
 
->sudo frails runner db/fig\_dev\_seed\_data/fig\_dev\_seed\_data.rb   
+>frails runner db/fig\_dev\_seed\_data/fig\_dev\_seed\_data.rb   
    
 Write down your admin password and the client\_id (we will later refer to this ID as the API\_APPLICATION\_ID)
 
